@@ -1,5 +1,6 @@
 ﻿using animouse.Properties;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -142,6 +143,17 @@ namespace animouse
         {
             Settings.Default.SpeedRandomMax = (double)speedRandomMax.Value;
             Settings.Default.Save();
+        }
+
+        private void GitHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Mopsgamer/animouse");
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Version version = Assembly.GetEntryAssembly().GetName().Version;
+            MessageBox.Show($"Version: {version}");
         }
     }
 }
