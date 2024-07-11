@@ -13,21 +13,13 @@ namespace animouse
             InitializeComponent();
             Shortcut = shortcut;
             shortcutValue.Text = shortcut.ToString();
+            GlobalKeyboard.Key += UpdateShortcutLabel;
         }
 
         void UpdateShortcutLabel(object sender, EventArgs e)
         {
-            if (GlobalKeyboard.IsDown(Key.Enter))
-            {
-                return;
-            }
             Shortcut = GlobalKeyboard.lastShortcut ?? Shortcut;
             shortcutValue.Text = Shortcut.ToReadableString();
-        }
-
-        private void okButton_Click(object sender, EventArgs e)
-        {
-            UpdateShortcutLabel(sender, e);
         }
     }
 }
