@@ -9,6 +9,7 @@ namespace animouse
 {
     public partial class FormMain : Form
     {
+        public static Task Task;
         public FormMain()
         {
             InitializeComponent();
@@ -25,10 +26,14 @@ namespace animouse
             speedRandomMax.Value = Math.Max(speedRandomMax.Minimum, Math.Min(speedRandomMax.Maximum, (decimal)Settings.Default.SpeedRandomMax));
             framerateNumeric.Value = Math.Max(framerateNumeric.Minimum, Math.Min(framerateNumeric.Maximum, Settings.Default.Framerate));
         }
+        ~FormMain()
+        {
+            Task.Dispose();
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Program.Task = Task.Factory.StartNew(() => { MouseAnimationDVD.Animate(); });
+            Task = Task.Factory.StartNew(() => { MouseAnimationDVD.Animate(); });
         }
 
         public void PickShortcutRunDVD()

@@ -15,7 +15,6 @@ namespace animouse
         public static FormSetupWhiteList formWhiteList;
         public static Shortcut ShortcutAddWhitelist = new Shortcut(new Key[] { Key.LeftCtrl, Key.LeftShift, Key.A });
         public static Shortcut ShortcutRunDVD;
-        public static Task Task;
         //
         // Summary:
         //     The main entry point for the application.
@@ -42,8 +41,7 @@ namespace animouse
 
             EnumWindows((hWnd, lParam) =>
             {
-                uint processId;
-                GetWindowThreadProcessId(hWnd, out processId);
+                GetWindowThreadProcessId(hWnd, out uint processId);
                 Process process = Process.GetProcessById((int)processId);
                 string processName = process.ProcessName;
                 if (!windowProcessNames.Contains(processName))
@@ -64,7 +62,7 @@ namespace animouse
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
 
-        private static LowLevelKeyboardProc _proc = HookCallback;
+        private static readonly LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
 
         private static IntPtr SetHook(LowLevelKeyboardProc proc)
@@ -86,13 +84,11 @@ namespace animouse
             GlobalKeyboard.nCode = nCode;
             GlobalKeyboard.wParam = wParam;
             GlobalKeyboard.lParam = lParam;
-            var form1 = Application.OpenForms[0] as FormMain;
             var isDown = nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN;
             var key = KeyInterop.KeyFromVirtualKey(Marshal.ReadInt32(GlobalKeyboard.lParam));
 
             IntPtr handle = GetForegroundWindow();
-            uint processId;
-            GetWindowThreadProcessId(handle, out processId);
+            GetWindowThreadProcessId(handle, out uint processId);
             Process process = Process.GetProcessById((int)processId);
             InFocusProcess = process.ProcessName;
             GlobalKeyboard.Invoke(key, isDown);
