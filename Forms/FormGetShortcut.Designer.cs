@@ -1,4 +1,4 @@
-﻿namespace animouse
+﻿namespace mouseutil
 {
     partial class FormGetShortcut
     {

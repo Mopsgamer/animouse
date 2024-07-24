@@ -1,17 +1,17 @@
-﻿using animouse.Properties;
+﻿using mouseutil.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace animouse
+namespace mouseutil
 {
     public partial class FormSetupWhiteList : Form
     {
-        private List<string> runningList = new List<string> { };
-        public Shortcut Shortcut;
-        public Shortcut ShortcutOwn;
+        private readonly List<string> runningList = new List<string> { };
+        public GlobalInput.GlobalShortcut Shortcut;
+        public GlobalInput.GlobalShortcut ShortcutOwn;
         public FormSetupWhiteList()
         {
             InitializeComponent();
@@ -86,7 +86,7 @@ namespace animouse
             });
         }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var selectedItems = whiteListBox.SelectedItems.Cast<string>().ToArray();
             var leaveItems = new List<string>(whiteListBox.Items.Cast<string>())
@@ -94,7 +94,7 @@ namespace animouse
             PickWhiteList(leaveItems);
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormGetText("Add new whitelist item:");
             var ok = form.ShowDialog() == DialogResult.OK;
@@ -111,7 +111,7 @@ namespace animouse
             PickWhiteList();
         }
 
-        private void allowToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AllowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (string item in runningListBox.SelectedItems)
             {
@@ -123,7 +123,7 @@ namespace animouse
             PickWhiteList();
         }
 
-        private void rejectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RejectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (string item in runningListBox.SelectedItems)
             {
@@ -135,12 +135,12 @@ namespace animouse
             PickWhiteList();
         }
 
-        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RefreshRunningList();
         }
 
-        private void useProcWhitelist_CheckedChanged(object sender, EventArgs e)
+        private void UseProcWhitelist_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.UseProcWhitelist = useProcWhitelist.Checked;
             Settings.Default.Save();

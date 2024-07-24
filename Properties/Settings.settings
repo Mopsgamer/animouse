@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="animouse.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="mouseutil.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="WhiteList" Type="System.Collections.Specialized.StringCollection" Scope="User">
@@ -35,6 +35,12 @@
     </Setting>
     <Setting Name="SpeedRandomMax" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="ClickWhen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Off</Value>
+    </Setting>
+    <Setting Name="ShortcutRunDVDToggler" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

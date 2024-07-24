@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Input;
+using GlobalInput;
 
-namespace animouse
+namespace mouseutil
 {
     public partial class FormGetShortcut : Form
     {
-        public Shortcut Shortcut;
+        public GlobalInput.GlobalShortcut Shortcut;
 
-        public FormGetShortcut(Shortcut shortcut)
+        public FormGetShortcut(GlobalInput.GlobalShortcut shortcut)
         {
             InitializeComponent();
             Shortcut = shortcut;
             shortcutValue.Text = shortcut.ToString();
-            GlobalKeyboard.Key += UpdateShortcutLabel;
+            GlobalKeyboard.OnKey += UpdateShortcutLabel;
+        }
+
+        ~FormGetShortcut()
+        {
+            GlobalKeyboard.OnKey -= UpdateShortcutLabel;
         }
 
         void UpdateShortcutLabel(object sender, EventArgs e)

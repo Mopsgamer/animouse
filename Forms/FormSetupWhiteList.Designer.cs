@@ -1,4 +1,4 @@
-﻿namespace animouse
+﻿namespace mouseutil
 {
     partial class FormSetupWhiteList
     {
@@ -78,7 +78,7 @@
             | System.Windows.Forms.Keys.N)));
             this.newToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -86,7 +86,7 @@
             this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -129,7 +129,7 @@
             | System.Windows.Forms.Keys.N)));
             this.allowToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.allowToolStripMenuItem.Text = "Allow";
-            this.allowToolStripMenuItem.Click += new System.EventHandler(this.allowToolStripMenuItem_Click);
+            this.allowToolStripMenuItem.Click += new System.EventHandler(this.AllowToolStripMenuItem_Click);
             // 
             // rejectToolStripMenuItem
             // 
@@ -137,7 +137,7 @@
             this.rejectToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.rejectToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.rejectToolStripMenuItem.Text = "Reject";
-            this.rejectToolStripMenuItem.Click += new System.EventHandler(this.rejectToolStripMenuItem_Click);
+            this.rejectToolStripMenuItem.Click += new System.EventHandler(this.RejectToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -151,7 +151,7 @@
             | System.Windows.Forms.Keys.R)));
             this.refreshToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
             // 
             // tableMain3Cols
             // 
@@ -204,7 +204,7 @@
             this.useProcWhitelist.TabIndex = 11;
             this.useProcWhitelist.Text = "Enabled";
             this.useProcWhitelist.UseVisualStyleBackColor = true;
-            this.useProcWhitelist.CheckedChanged += new System.EventHandler(this.useProcWhitelist_CheckedChanged);
+            this.useProcWhitelist.CheckedChanged += new System.EventHandler(this.UseProcWhitelist_CheckedChanged);
             // 
             // FormSetupWhiteList
             // 

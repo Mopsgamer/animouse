@@ -1,4 +1,4 @@
-﻿namespace animouse
+﻿namespace mouseutil
 {
     partial class FormGetText
     {
@@ -35,13 +35,13 @@
             // 
             // input
             // 
-            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.input.Location = new System.Drawing.Point(12, 31);
             this.input.Name = "input";
             this.input.Size = new System.Drawing.Size(210, 20);
             this.input.TabIndex = 0;
-            this.input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_KeyDown);
+            this.input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Input_KeyDown);
             // 
             // okButton
             // 

@@ -1,16 +1,77 @@
-﻿using animouse.Properties;
+﻿using GlobalInput;
+using mouseutil.Properties;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 
-namespace animouse
+namespace mouseutil
 {
-    internal static class MouseAnimationDVD
+    public class MouseAnimationDVD
     {
-        public static Point Position;
-        public static Point Move;
-        public static Point Center;
-        public static Size Box
+        private bool running = false;
+        private bool stopping = true;
+        public MouseAnimationDVD()
+        {
+            GlobalKeyboard.OnKeyDown += ToggleRunningKeyDown;
+            GlobalKeyboard.OnKeyUp += ToggleRunningKeyUp;
+        }
+
+        ~MouseAnimationDVD()
+        {
+            GlobalKeyboard.OnKeyDown -= ToggleRunningKeyDown;
+            GlobalKeyboard.OnKeyUp -= ToggleRunningKeyUp;
+        }
+
+        private void ToggleRunningKeyDown(object sender, EventArgs e)
+        {
+            if (!GlobalKeyboard.lastShortcut.Equals(Program.ShortcutRunDVD))
+            {
+                return;
+            }
+
+            if (!Settings.Default.ShortcutRunDVDToggler)
+            {
+                running = true;
+                return;
+            }
+        }
+
+        private void ToggleRunningKeyUp(object sender, EventArgs e)
+        {
+            if (!GlobalKeyboard.lastShortcut.Equals(Program.ShortcutRunDVD))
+            {
+                return;
+            }
+
+            if (!Settings.Default.ShortcutRunDVDToggler)
+            {
+                running = false;
+                return;
+            }
+
+            running = !running;
+        }
+
+        [Serializable]
+        public enum Clicking
+        {
+            Disabled, OnBounce, OnTick
+        }
+
+        public static Dictionary<Clicking, string> ClickingChoices = new Dictionary<Clicking, string>
+        {
+            { Clicking.Disabled, "Off" },
+            { Clicking.OnBounce, "Each bounce"},
+            { Clicking.OnTick, "Each tick" },
+        };
+
+        public Point Position;
+        public Point Move;
+        public Point Center;
+        public Size Box
         {
             get
             {
@@ -29,41 +90,28 @@ namespace animouse
         private static readonly Random Rand = new Random();
 
         public static double SpeedMod;
-        private static bool IsAtStart = true;
         private static Point Delta = new Point(1, 1);
 
-        public static void Reset()
-        {
-            IsAtStart = true;
-            DeltaGenerate();
-            SpeedModGenerate();
-        }
-
-        private static void SpeedModGenerate()
+        private void SpeedModGenerate()
         {
             SpeedMod = Rand.NextDouble() * (Settings.Default.SpeedRandomMax - Settings.Default.SpeedRandomMin) + Settings.Default.SpeedRandomMin;
         }
 
-        private static void DeltaGenerate()
+        private void DeltaGenerate()
         {
             int x = Rand.Next(0, 2) == 0 ? -1 : 1;
             int y = Rand.Next(0, 2) == 0 ? -1 : 1;
             Delta = new Point(x, y);
         }
 
-        public static int BoundLeft { get { return Center.X - Box.Width / 2; } }
-        public static int BoundRight { get { return Center.X + Box.Width / 2; } }
-        public static int BoundTop { get { return Center.Y - Box.Height / 2; } }
-        public static int BoundBottom { get { return Center.Y + Box.Height / 2; } }
+        public int BoundLeft { get { return Center.X - Box.Width / 2; } }
+        public int BoundRight { get { return Center.X + Box.Width / 2; } }
+        public int BoundTop { get { return Center.Y - Box.Height / 2; } }
+        public int BoundBottom { get { return Center.Y + Box.Height / 2; } }
 
-
-        public static void Tick()
+        public void Next()
         {
-            if (IsAtStart)
-            {
-                Position = Center;
-            }
-            IsAtStart = false;
+            Clicking clickWhen = ClickingChoices.First(kv => kv.Value == Settings.Default.ClickWhen).Key;
 
             // Move
             Move.X = (int)(Delta.X * Speed.X * SpeedMod);
@@ -108,13 +156,43 @@ namespace animouse
             if (boundXReached || boundYReached)
             {
                 SpeedModGenerate();
+                if (clickWhen == Clicking.OnBounce)
+                {
+                    GlobalCursor.ClickLeft(Position);
+                }
+            }
+
+            if (clickWhen == Clicking.OnTick)
+            {
+                GlobalCursor.ClickLeft(Position);
             }
         }
 
-        public static void Animate()
+        public bool Running
         {
+            get
+            {
+                var isFocusedInWhiteList = !Settings.Default.UseProcWhitelist || Settings.Default.WhiteList.Contains(Program.InFocusProcess);
+                return isFocusedInWhiteList && running;
+            }
+        }
+
+        public void Stop()
+        {
+            stopping = true;
+        }
+
+        public void Start()
+        {
+            stopping = false;
+            DeltaGenerate();
+            SpeedModGenerate();
             while (true)
             {
+                if (stopping)
+                {
+                    break;
+                }
                 var framerate = Math.Max(1, Math.Min(Settings.Default.Framerate, 1000));
                 Thread.Sleep(1000 / framerate);
 
@@ -129,17 +207,14 @@ namespace animouse
                     continue;
                 }
 
-                var isFocusedInWhiteList = !Settings.Default.UseProcWhitelist || Settings.Default.WhiteList.Contains(Program.InFocusProcess);
-                var isDownShortcutDVD = Program.ShortcutRunDVD.IsDown();
-                if (isFocusedInWhiteList && isDownShortcutDVD)
+                if (Running)
                 {
-                    Tick();
-                    Program.Move(Move.X, Move.Y);
+                    Next();
+                    GlobalCursor.Position = Move;
                     continue;
                 }
 
-                Reset();
-                Center = System.Windows.Forms.Cursor.Position;
+                Position = Center = GlobalCursor.Position;
             }
         }
     }

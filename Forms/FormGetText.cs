@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace animouse
+namespace mouseutil
 {
     public partial class FormGetText : Form
     {
@@ -15,7 +15,7 @@ namespace animouse
             noteLabel.Text = note;
         }
 
-        private void input_KeyDown(object sender, KeyEventArgs e)
+        private void Input_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode != Keys.Enter)
             {

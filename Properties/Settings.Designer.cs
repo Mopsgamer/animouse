@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace animouse.Properties {
+namespace mouseutil.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -153,6 +153,30 @@ namespace animouse.Properties {
             }
             set {
                 this["SpeedRandomMax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Off")]
+        public string ClickWhen {
+            get {
+                return ((string)(this["ClickWhen"]));
+            }
+            set {
+                this["ClickWhen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShortcutRunDVDToggler {
+            get {
+                return ((bool)(this["ShortcutRunDVDToggler"]));
+            }
+            set {
+                this["ShortcutRunDVDToggler"] = value;
             }
         }
     }

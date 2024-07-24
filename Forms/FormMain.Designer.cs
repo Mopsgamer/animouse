@@ -1,4 +1,4 @@
-﻿namespace animouse
+﻿namespace mouseutil
 {
     partial class FormMain
     {
@@ -31,7 +31,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.runDVDTogglerShortcut = new System.Windows.Forms.CheckBox();
             this.runDVDSetShortcut = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -54,10 +58,9 @@
             this.speedRandomMax = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.speedRandomMin = new System.Windows.Forms.NumericUpDown();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.clickWhen = new System.Windows.Forms.ComboBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -75,13 +78,12 @@
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedRandomMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.speedRandomMin)).BeginInit();
+            this.groupBox7.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(284, 24);
@@ -104,24 +106,61 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gitHubToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // gitHubToolStripMenuItem
+            // 
+            this.gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
+            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.gitHubToolStripMenuItem.Text = "GitHub";
+            this.gitHubToolStripMenuItem.Click += new System.EventHandler(this.GitHubToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.runDVDTogglerShortcut);
             this.groupBox1.Controls.Add(this.runDVDSetShortcut);
             this.groupBox1.Location = new System.Drawing.Point(13, 41);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(259, 52);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DVD mouse animation";
+            this.groupBox1.Text = "DVD run animation";
+            // 
+            // runDVDTogglerShortcut
+            // 
+            this.runDVDTogglerShortcut.Dock = System.Windows.Forms.DockStyle.Right;
+            this.runDVDTogglerShortcut.Location = new System.Drawing.Point(176, 16);
+            this.runDVDTogglerShortcut.Name = "runDVDTogglerShortcut";
+            this.runDVDTogglerShortcut.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.runDVDTogglerShortcut.Size = new System.Drawing.Size(80, 33);
+            this.runDVDTogglerShortcut.TabIndex = 1;
+            this.runDVDTogglerShortcut.Text = "As toggler";
+            this.runDVDTogglerShortcut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.runDVDTogglerShortcut.UseVisualStyleBackColor = true;
+            this.runDVDTogglerShortcut.CheckedChanged += new System.EventHandler(this.RunDVDTogglerShortcut_CheckedChanged);
             // 
             // runDVDSetShortcut
             // 
-            this.runDVDSetShortcut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.runDVDSetShortcut.Dock = System.Windows.Forms.DockStyle.Left;
             this.runDVDSetShortcut.Location = new System.Drawing.Point(3, 16);
             this.runDVDSetShortcut.Name = "runDVDSetShortcut";
-            this.runDVDSetShortcut.Size = new System.Drawing.Size(253, 33);
+            this.runDVDSetShortcut.Size = new System.Drawing.Size(167, 33);
             this.runDVDSetShortcut.TabIndex = 0;
             this.runDVDSetShortcut.Text = "<Shortcut>";
             this.runDVDSetShortcut.UseVisualStyleBackColor = true;
@@ -200,7 +239,7 @@
             // whitelistOpen
             // 
             this.whitelistOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.whitelistOpen.Location = new System.Drawing.Point(198, 391);
+            this.whitelistOpen.Location = new System.Drawing.Point(198, 446);
             this.whitelistOpen.Name = "whitelistOpen";
             this.whitelistOpen.Size = new System.Drawing.Size(75, 23);
             this.whitelistOpen.TabIndex = 100;
@@ -404,34 +443,53 @@
             this.speedRandomMin.TabIndex = 2;
             this.speedRandomMin.ValueChanged += new System.EventHandler(this.SpeedRandomMin_ValueChanged);
             // 
-            // helpToolStripMenuItem
+            // clickWhen
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gitHubToolStripMenuItem,
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.clickWhen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.clickWhen.FormattingEnabled = true;
+            this.clickWhen.Items.AddRange(new object[] {
+            "Off",
+            "Each bouce",
+            "Each tick"});
+            this.clickWhen.Location = new System.Drawing.Point(3, 3);
+            this.clickWhen.Name = "clickWhen";
+            this.clickWhen.Size = new System.Drawing.Size(241, 21);
+            this.clickWhen.TabIndex = 102;
+            this.clickWhen.SelectedIndexChanged += new System.EventHandler(this.ClickWhen_Changed);
             // 
-            // gitHubToolStripMenuItem
+            // groupBox7
             // 
-            this.gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
-            this.gitHubToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gitHubToolStripMenuItem.Text = "GitHub";
-            this.gitHubToolStripMenuItem.Click += new System.EventHandler(this.GitHubToolStripMenuItem_Click);
+            this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox7.Controls.Add(this.tableLayoutPanel5);
+            this.groupBox7.Location = new System.Drawing.Point(13, 389);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(259, 52);
+            this.groupBox7.TabIndex = 10;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Clicking";
             // 
-            // aboutToolStripMenuItem
+            // tableLayoutPanel5
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
+            this.tableLayoutPanel5.Controls.Add(this.clickWhen, 0, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(6, 20);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(247, 26);
+            this.tableLayoutPanel5.TabIndex = 9;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 426);
+            this.ClientSize = new System.Drawing.Size(284, 481);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -441,12 +499,10 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(300, 465);
+            this.MinimumSize = new System.Drawing.Size(300, 520);
             this.Name = "FormMain";
-            this.Text = "Animouse - DVD mouse animation";
+            this.Text = "Mouse util";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -467,6 +523,8 @@
             this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedRandomMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.speedRandomMin)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -502,6 +560,10 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gitHubToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.CheckBox runDVDTogglerShortcut;
+        private System.Windows.Forms.ComboBox clickWhen;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
     }
 }
 
